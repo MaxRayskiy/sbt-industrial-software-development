@@ -1,0 +1,16 @@
+<h1>Submit issue</h1>
+<form method="POST">
+    <label>Issue title (required):</label><br />
+    <input type="text" name="title"><br />
+    <label>Description (optional):</label><br />
+    <textarea name="description"></textarea><br />
+    <label>Email (optional):</label><br />
+    <input type="text" name="email"><br />
+    <label>Show my email only for developers:</label><br />
+    <input type="checkbox" id="private" name="private" checked><br />
+
+    <input type="submit">
+</form>
+{{if .Success}}
+<h1>Thank you for your issue!</h1>
+{{end}}
