@@ -2,11 +2,8 @@ FROM golang:1.19-alpine
 
 WORKDIR /app
 
-COPY *.go .
-COPY go.mod .
-COPY go.sum .
-COPY issue.html .
-COPY db db
+COPY *.go go.mod go.sum issue.html ./
+COPY db ./db
 
 RUN go mod download
 RUN go build -o /issue-tracker
