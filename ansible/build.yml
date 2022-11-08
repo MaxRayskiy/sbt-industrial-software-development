@@ -1,0 +1,37 @@
+# build image
+---
+- hosts: builder1
+  vars:
+    create_containers: 1
+    default_container_name: issue-tracker
+    default_container_image: maxrayskiy/issue-tracker
+
+  tasks:
+    - name: Install Docker Module for Python
+      pip:
+        name: docker
+    - name: Recursively remove directory
+      file:
+        path: /home/ubuntu/builder
+        state: absent
+    - name: create build directory
+      file:
+        path: /home/ubuntu/builder
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+    - name: Git checkout
+      git:
+        repo: 'https://github.com/MaxRayskiy/sbt-industrial-software-development'
+        dest: /home/ubuntu/builder
+        single_branch: yes
+        version: master
+    - name: Build an image
+      community.docker.docker_image:
+        build:
+          path: /home/ubuntu/builder/issue-tracker
+        name: maxrayskiy/issue-tracker
+        tag: test
+        push: false # update credentials!
+        source: build

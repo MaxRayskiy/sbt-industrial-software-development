@@ -1,0 +1,5 @@
+[builder]
+builder1 ansible_host=YOUR_IP ansible_user=ubuntu ansible_ssh_private_key_file=/Users/maxraiskii/Documents/ANSIBLE_BUILDER.pem
+
+[production]
+prod1 ansible_host=YOUR_IP ansible_user=ubuntu ansible_ssh_private_key_file=/Users/maxraiskii/Documents/ANSIBLE_PROD.pem
