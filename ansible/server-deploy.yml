@@ -1,0 +1,25 @@
+# start app with docker-compose.yml
+---
+- hosts: prod1
+  tasks:
+    - name: create app directory
+      file:
+        path: /home/ubuntu/app
+        state: directory
+        owner: ubuntu
+        group: ubuntu
+        mode: '0755'
+    - name: copy Docker Compose files
+      copy:
+        src: ../{{ item }}
+        dest: /home/ubuntu/app/{{ item }}
+      loop:
+        - docker-compose.yml
+        - .env
+
+    - name: deploy Docker Compose stack
+      community.docker.docker_compose:
+        project_src: /home/ubuntu/app
+        build: false
+        files:
+          - docker-compose.yml
