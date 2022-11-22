@@ -7,5 +7,5 @@ def test():
             "email": "tester+100500@gmail.com",
             "private": True}
     response = requests.post("http://192.168.1.110:8080/add", json=body)
-    assert response.status_code == 201
+    assert response.status_code == 200
     print(response.text)
