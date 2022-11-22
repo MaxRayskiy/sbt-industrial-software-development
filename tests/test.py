@@ -1,7 +1,7 @@
 import requests
 
 
-def test(self):
+def test():
     body = {"title": "Test Issue",
             "description": "any!",
             "email": "tester+100500@gmail.com",
