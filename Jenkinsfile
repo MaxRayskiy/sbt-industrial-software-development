@@ -11,17 +11,28 @@ pipeline {
                 git url: repoUrl, branch: "task3"
             }
         }
+        stage("buid-lint") {
+            steps {
+                dir("issue-tracker") {
+                    sh 'whoami && go version'
+                }
+            }
+        }
         stage("test") {
             steps {
                 dir("issue-tracker") {
                     echo 'BUILD EXECUTION STARTED'
-                    sh 'whoami && go version'
                     sh 'docker compose up -d'
                 }
                 dir("tests") {
-                    sh 'python3 -m pip install allure-pytest pytest'
+                    sh 'python3 -m pip install -r ./requirements.txt'
                     sh 'python3 -m pytest --alluredir=./reports test.py'
                 }
+                allure([
+              	   includeProperties: false,
+              	   reportBuildPolicy: 'ALWAYS',
+              	   results: [[path: 'tests/reports']]
+            	])
                 dir("issue-tracker") {
                     sh 'docker compose down'
                 }
