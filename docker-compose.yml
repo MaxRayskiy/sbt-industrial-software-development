@@ -18,7 +18,7 @@ services:
     ports:
       - "5050:80"
   server:
-    image: maxrayskiy/issue-tracker
+    #image: maxrayskiy/issue-tracker
     build:
       context: issue-tracker
       dockerfile: Dockerfile
