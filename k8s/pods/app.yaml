@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: app
+spec:
+  containers:
+    - name: app
+      image: maxrayskiy/issue-tracker
+      ports:
+        - containerPort: 8080
