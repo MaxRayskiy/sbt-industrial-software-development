@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pgadmin
+spec:
+  containers:
+    - name: pgadmin
+      image: dpage/pgadmin4
+      ports:
+        - containerPort: 5050
